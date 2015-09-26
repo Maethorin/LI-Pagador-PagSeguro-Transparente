@@ -99,7 +99,7 @@ class EntregaPagamento(servicos.EntregaPagamento):
         self.faz_http = True
         self.conexao = self.obter_conexao(formato_envio=requisicao.Formato.form_urlencode, formato_resposta=requisicao.Formato.xml)
         self.resposta = None
-        self.url = 'https://ws.{}pagseguro.uol.com.br/v2/checkout'.format(self.sandbox)
+        self.url = 'https://ws.{}pagseguro.uol.com.br/v2/transactions'.format(self.sandbox)
 
     def define_credenciais(self):
         self.conexao.credenciador = Credenciador(configuracao=self.configuracao)

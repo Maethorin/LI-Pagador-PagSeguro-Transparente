@@ -32,9 +32,23 @@ class Malote(entidades.Malote):
     _chaves_alternativas_para_serializacao = {
         'app_id': 'appId',
         'app_key': 'appKey',
+        'payment_mode': 'paymentMode',
+        'payment_method ': 'paymentMethod',
         'currency': 'currency',
+        'credit_card_token': 'creditCardToken',
+        'installment_quantity': 'installmentQuantity',
+        'installment_value': 'installmentValue',
+        'no_interest_installment_quantity': 'noInterestInstallmentQuantity',
         'reference': 'reference',
+        'credit_card_holder_name': 'creditCardHolderName',
+        'credit_card_holder_cpf': 'creditCardHolderCPF',
+        'credit_card_holder_birth_date': 'creditCardHolderBirthDate',
+        'credit_card_holder_area_code': 'creditCardHolderAreaCode',
+        'credit_card_holder_phone': 'creditCardHolderPhone',
         'sender_name': 'senderName',
+        'sender_cpf': 'senderCPF',
+        'sender_cnpj': 'senderCNPJ',
+        'sender_hash': 'senderHash',
         'sender_area_code': 'senderAreaCode',
         'sender_phone': 'senderPhone',
         'sender_email': 'senderEmail',
@@ -48,6 +62,14 @@ class Malote(entidades.Malote):
         'shipping_address_state': 'shippingAddressState',
         'shipping_address_country': 'shippingAddressCountry',
         'shipping_cost': 'shippingCost',
+        'billing_address_street': 'billingAddressStreet',
+        'billing_address_number': 'billingAddressNumber',
+        'billing_address_complement': 'billingAddressComplement',
+        'billing_address_district': 'billingAddressDistrict',
+        'billing_address_postal_code': 'billingAddressPostalCode',
+        'billing_address_city': 'billingAddressCity',
+        'billing_address_state': 'billingAddressState',
+        'billing_address_country': 'billingAddressCountry',
         'extra_amount': 'extraAmount',
         'redirect_url': 'redirectURL',
         'notification_url': 'notificationURL'
@@ -57,8 +79,20 @@ class Malote(entidades.Malote):
         super(Malote, self).__init__(configuracao)
         self.app_id = None
         self.app_key = None
-        self.currency = None
+        self.payment_mode = 'default'
+        self.payment_method = 'creditCard'
+        self.installment_quantity = 1
+        self.installment_value = None
+        self.no_interest_installment_quantity = None
+        self.currency = 'BRL'
+        self.credit_card_token = None
         self.reference = None
+        #TODO: Validar com o Fernando se esses campos são realmente necessários
+        self.credit_card_holder_name = None
+        self.credit_card_holder_cpf = None
+        self.credit_card_holder_birth_date = None
+        self.credit_card_holder_area_code = None
+        self.credit_card_holder_phone = None
         self.sender_name = None
         self.sender_area_code = None
         self.sender_phone = None
@@ -73,6 +107,15 @@ class Malote(entidades.Malote):
         self.shipping_address_state = None
         self.shipping_address_country = 'BRA'
         self.shipping_cost = None
+        #TODO: Validar com o Fernando se esses campos são realmente necessários
+        self.billing_address_street = None
+        self.billing_address_number = None
+        self.billing_address_complement = None
+        self.billing_address_district = None
+        self.billing_address_postal_code = None
+        self.billing_address_city = None
+        self.billing_address_state = None
+        self.billing_address_country = 'BRA'
         self.extra_amount = None
         self.redirect_url = None
         self.notification_url = None
@@ -103,7 +146,6 @@ class Malote(entidades.Malote):
         numero_telefone = pedido.cliente_telefone
         self.app_key = parametros_contrato['app_secret']
         self.app_id = parametros_contrato['app_id']
-        self.currency = 'BRL'
         self.reference = pedido.numero
         self.notification_url = '{}/notificacao'.format(notification_url)
         self.redirect_url = u'{}/resultado?next_url={}&referencia={}'.format(notification_url, dados['next_url'], pedido.numero)
