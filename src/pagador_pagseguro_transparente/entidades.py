@@ -170,7 +170,7 @@ class Malote(entidades.Malote):
 
 
 class ConfiguracaoMeioPagamento(entidades.ConfiguracaoMeioPagamento):
-    MEIOS_PAGAMENTO = {
+    modos_pagamento_aceitos = {
         'cartoes': ['visa', 'mastercard', 'hipercard', 'amex'],
         'bancos': ['banco-itau', 'bradesco', 'banco-do-brasil'],
         'outros': ['boleto']
