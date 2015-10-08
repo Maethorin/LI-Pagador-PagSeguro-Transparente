@@ -176,7 +176,7 @@ class ConfiguracaoMeioPagamento(entidades.ConfiguracaoMeioPagamento):
     }
 
     def __init__(self, loja_id, codigo_pagamento=None, eh_listagem=False):
-        self.campos = ['ativo', 'codigo_autorizacao', 'valor_minimo_aceitado', 'valor_minimo_parcela', 'mostrar_parcelamento', 'maximo_parcelas', 'parcelas_sem_juros']
+        self.campos = ['ativo', 'aplicacao', 'codigo_autorizacao', 'valor_minimo_aceitado', 'valor_minimo_parcela', 'mostrar_parcelamento', 'maximo_parcelas', 'parcelas_sem_juros']
         self.codigo_gateway = CODIGO_GATEWAY
         self.eh_gateway = True
         self.src_js_sdk = 'https://stc.{}pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js'.format(
