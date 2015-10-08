@@ -33,7 +33,7 @@ def read(fname):
 
 setup(
     name='li-pagador-pagseguro-transparente',
-    version='0.0.1',
+    version='0.0.2',
     url='https://github.com/lojaintegrada/LI-Pagador-PagSeguro-Transparente',
     license='MIT',
     description='Meio de pagamento usando o PagSeguro Checkout Transparente (https://pagseguro.uol.com.br)',
