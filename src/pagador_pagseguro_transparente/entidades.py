@@ -2,7 +2,7 @@
 from pagador import configuracoes, entidades
 from pagador_pagseguro_transparente import cadastro
 
-CODIGO_GATEWAY = 1
+CODIGO_GATEWAY = 16
 GATEWAY = 'pstransparente'
 
 
@@ -87,13 +87,15 @@ class Malote(entidades.Malote):
         self.currency = 'BRL'
         self.credit_card_token = None
         self.reference = None
-        #TODO: Validar com o Fernando se esses campos são realmente necessários
         self.credit_card_holder_name = None
         self.credit_card_holder_cpf = None
         self.credit_card_holder_birth_date = None
         self.credit_card_holder_area_code = None
         self.credit_card_holder_phone = None
         self.sender_name = None
+        self.sender_cpf = None
+        self.sender_cnpj = None
+        self.sender_hash = None
         self.sender_area_code = None
         self.sender_phone = None
         self.sender_email = None
@@ -107,7 +109,6 @@ class Malote(entidades.Malote):
         self.shipping_address_state = None
         self.shipping_address_country = 'BRA'
         self.shipping_cost = None
-        #TODO: Validar com o Fernando se esses campos são realmente necessários
         self.billing_address_street = None
         self.billing_address_number = None
         self.billing_address_complement = None
@@ -171,13 +172,11 @@ class Malote(entidades.Malote):
 
 class ConfiguracaoMeioPagamento(entidades.ConfiguracaoMeioPagamento):
     modos_pagamento_aceitos = {
-        'cartoes': ['visa', 'mastercard', 'hipercard', 'amex'],
-        'bancos': ['banco-itau', 'bradesco', 'banco-do-brasil'],
-        'outros': ['boleto']
+        'cartoes': ['visa', 'mastercard', 'hipercard', 'amex']
     }
 
     def __init__(self, loja_id, codigo_pagamento=None, eh_listagem=False):
-        self.campos = ['ativo', 'aplicacao', 'codigo_autorizacao', 'valor_minimo_aceitado', 'valor_minimo_parcela', 'mostrar_parcelamento', 'maximo_parcelas', 'parcelas_sem_juros']
+        self.campos = ['ativo', 'codigo_autorizacao', 'valor_minimo_aceitado', 'valor_minimo_parcela', 'mostrar_parcelamento', 'maximo_parcelas', 'parcelas_sem_juros']
         self.codigo_gateway = CODIGO_GATEWAY
         self.eh_gateway = True
         self.src_js_sdk = 'https://stc.{}pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js'.format(
